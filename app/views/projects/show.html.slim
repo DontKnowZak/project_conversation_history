@@ -14,3 +14,9 @@ div.container.mx-auto.px-4
   ul#comments
     - @comments.each do |comment|
       = render CommentComponent.new(body: comment.content, user_email: comment.user.email, created_at: comment.created_at)
+
+  h2.text-2xl.font-semibold.mb-2 Status Changes
+
+  ul#status_changes
+    - @status_changes.each do |status_change|
+      = render StatusChangeComponent.new(status: status_change.status, user_email: status_change.user.email, created_at: status_change.created_at)

@@ -4,6 +4,7 @@ RSpec.describe "Projects", type: :request do
   let!(:user) { User.create!(email: 'user@test.com', password: 'password') }
   let!(:project) { Project.create!(name: 'Amazing project', description: 'Groundbreaking new feature', status: 'Not Started') }
   let!(:project_2) { Project.create!(name: 'Another project', description: 'Less impressive new feature', status: 'Not Started') }
+  let!(:status_change) { StatusChange.create!(status: 'In Progress', user: user, project: project) }
 
   before do
     sign_in user
@@ -30,6 +31,8 @@ RSpec.describe "Projects", type: :request do
       expect(response.body).to include('Amazing project')
       expect(response.body).to include('Groundbreaking new feature')
       expect(response.body).to include('Not Started')
+      expect(response.body).to include('In Progress')
+      expect(response.body).to include('Changed by user@test.com on')
     end
   end
 end

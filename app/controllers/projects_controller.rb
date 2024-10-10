@@ -8,6 +8,7 @@ class ProjectsController < ApplicationController
 
   def show
     @comments = @project.comments.order(created_at: :desc)
+    @status_changes = @project.status_changes.order(created_at: :desc)
   end
 
   private
