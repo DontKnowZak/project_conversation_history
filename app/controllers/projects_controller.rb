@@ -7,8 +7,9 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @comments = @project.comments.order(created_at: :desc)
-    @status_changes = @project.status_changes.order(created_at: :desc)
+    @comments = @project.comments
+    @status_changes = @project.status_changes
+    @activities = (@comments + @status_changes).sort_by(&:created_at).reverse
   end
 
   def update

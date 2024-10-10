@@ -1,5 +1,5 @@
-User.destroy_all
 Project.destroy_all
+User.destroy_all
 
 User.create!(
   email: 'user@example.com',

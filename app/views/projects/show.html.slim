@@ -11,18 +11,16 @@ div.container.mx-auto.px-4
       = form.select :status, options_for_select(['Todo', 'In Progress', 'Done'], @project.status), {}, class: "w-full p-2 border rounded"
       = form.submit 'Update Status', class: "mt-2 bg-blue-500 text-white px-4 py-2 rounded"
 
-  h2.text-2xl.font-semibold.mb-2 Comments
+  h2.text-2xl.font-semibold.mb-2 Activity Log
+
   = form_with(model: [@project, Comment.new], local: true) do |form|
     .mb-4
       = form.text_area :content, class: "w-full p-2 border rounded"
       = form.submit 'Add Comment', class: "mt-2 bg-blue-500 text-white px-4 py-2 rounded"
 
-  ul#comments
-    - @comments.each do |comment|
-      = render CommentComponent.new(body: comment.content, user_email: comment.user.email, created_at: comment.created_at)
-
-  h2.text-2xl.font-semibold.mb-2 Status Changes
-
-  ul#status_changes
-    - @status_changes.each do |status_change|
-      = render StatusChangeComponent.new(status: status_change.status, user_email: status_change.user.email, created_at: status_change.created_at)
+  ul#activities
+    - @activities.each do |activity|
+      - if activity.is_a?(Comment)
+        = render CommentComponent.new(body: activity.content, user_email: activity.user.email, created_at: activity.created_at)
+      - elsif activity.is_a?(StatusChange)
+        = render StatusChangeComponent.new(status: activity.status, user_email: activity.user.email, created_at: activity.created_at)
