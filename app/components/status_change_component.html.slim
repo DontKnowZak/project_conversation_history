@@ -1,0 +1,6 @@
+li.mb-4.p-4.border.rounded.shadow
+  p.font-semibold.mb-2
+    | Status changed: 
+    = @status
+  p.text-sm.text-gray-600
+    | Changed by #{@user_email} on #{@created_at.strftime("%d/%m/%y at %I:%M %p")}

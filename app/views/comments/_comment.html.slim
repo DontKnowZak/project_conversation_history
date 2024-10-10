@@ -1,0 +1,4 @@
+li
+  p.font-semibold = comment.content
+  p.text-sm.text-gray-600
+    | Posted by #{comment.user.email} on #{comment.created_at.strftime("%d/%m/%y at %I:%M %p")}
