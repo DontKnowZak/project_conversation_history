@@ -1,0 +1,15 @@
+div.container.mx-auto.px-4
+  h1.text-4xl.font-bold.mb-2 = @project.name
+  p.text-lg.text-gray-700.mb-4 = @project.description
+  p.text-lg.text-gray-700.mb-4
+    | Status: 
+    span.font-semibold = @project.status
+
+  h2.text-2xl.font-semibold.mb-2 Comments
+  = form_with(model: [@project, Comment.new], local: true) do |form|
+    .mb-4
+      = form.text_area :content, class: "w-full p-2 border rounded"
+      = form.submit 'Add Comment', class: "mt-2 bg-blue-500 text-white px-4 py-2 rounded"
+
+  ul#comments
+    = render @comments

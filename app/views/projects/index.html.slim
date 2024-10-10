@@ -1,0 +1,12 @@
+div.container.mx-auto.px-4
+  h1.font-bold.text-4xl.mb-4 Projects List
+
+  - if @projects.any?
+    ul
+      - @projects.each do |project|
+        li.mb-2.p-4.border.rounded.shadow
+          h2.font-semibold.text-2xl = link_to project.name, project_path(project)
+          p.mt-2 = project.description
+          p.mt-1.text-sm.text-gray-600 Status: #{project.status}
+  - else
+    p.text-gray-600 No projects available.
