@@ -5,6 +5,12 @@ div.container.mx-auto.px-4
     | Status: 
     span.font-semibold = @project.status
 
+  h2.text-2xl.font-semibold.mb-2 Change Status
+  = form_with(model: @project, local: true) do |form|
+    .mb-4
+      = form.select :status, options_for_select(['Todo', 'In Progress', 'Done'], @project.status), {}, class: "w-full p-2 border rounded"
+      = form.submit 'Update Status', class: "mt-2 bg-blue-500 text-white px-4 py-2 rounded"
+
   h2.text-2xl.font-semibold.mb-2 Comments
   = form_with(model: [@project, Comment.new], local: true) do |form|
     .mb-4
