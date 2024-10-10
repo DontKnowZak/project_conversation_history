@@ -4,7 +4,13 @@ html
     title Project Conversation History
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload'
+    = stylesheet_link_tag 'tailwind', media: 'all', 'data-turbo-track': 'reload'
     = javascript_include_tag 'application', 'data-turbo-track': 'reload'
   body
+    - if notice
+      p.notice
+        = notice
+    - if alert
+      p.alert
+        = alert
     = yield
