@@ -12,4 +12,5 @@ div.container.mx-auto.px-4
       = form.submit 'Add Comment', class: "mt-2 bg-blue-500 text-white px-4 py-2 rounded"
 
   ul#comments
-    = render @comments
+    - @comments.each do |comment|
+      = render CommentComponent.new(body: comment.content, user_email: comment.user.email, created_at: comment.created_at)
